@@ -31,6 +31,16 @@ program
 	.action((serviceName) => dockerService.build(serviceName))
 
 program
+	.command('start [subCmd]')
+	.description('Start the currently generated docker-compose, rebuilding is optional')
+	.action((subCmd) => {
+		if (subCmd) {
+			dockerService.buildAndDockerize()
+		}
+		dockerService.startDockerCompose()
+	})
+
+program
 	.command('dockerize [serviceName]')
 	.description('Dockerizes the services\' last build artifact or all, if non mentioned')
 	.action((serviceName) => dockerService.dockerize(serviceName))
