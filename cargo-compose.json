@@ -1,20 +1,38 @@
 {
     "serverPort": 6789,
     "spaces": 2,
+    "dockerImagePrefix": "cargo-compose",
     "services": {
         "cdc-exporter": {
             "location": "/Users/jonas/Documents/codecentric/metro/clean-and-enrich/cdc-exporter",
-            "type": "springboot",
-            "port": "8080",
+            "ports": ["8080"],
             "env": {
                 "JAVA_XMX_MB": "256",
                 "IS_COMPOSE": "true"
             }
         },
+		"cdc-optivo-mock": {
+			"location": "/Users/jonas/Documents/codecentric/metro/clean-and-enrich/cdc-optivo-mock",
+			"ports": ["8083"],
+			"env": {
+				"SHOULD_CONFIRM_IN_MAIL": "true",
+				"STAGE": "dev",
+				"COLLECTOR_HOST": "cdc-campaign-ui:3000"
+			}
+		},
+        "cdc-campaign-ui": {
+        	"location": "/Users/jonas/Documents/codecentric/metro/clean-and-enrich/cdc-campaign-ui",
+			"ports": ["3000"],
+			"env": {
+				"CE_CASSANDRA_CP": "cassandra-0",
+				"CE_NODE_ENV": "development",
+				"OPTIVO_BASE_URL": "http://cdc-optivo-mock:8083"
+			},
+			"dependsOn": ["cdc-optivo-mock"]
+        },
         "cdc-import-file": {
             "location": "/Users/jonas/Documents/codecentric/metro/clean-and-enrich/cdc-import-file",
-            "type": "springboot",
-            "port": "8081",
+            "ports": ["8081"],
             "env": {
                 "JAVA_XMX_MB": "256",
                 "IS_COMPOSE": "true"
