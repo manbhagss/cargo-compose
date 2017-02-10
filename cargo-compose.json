@@ -1,5 +1,6 @@
 {
     "serverPort": 6789,
+    "spaces": 2,
     "services": {
         "cdc-exporter": {
             "location": "/Users/jonas/Documents/codecentric/metro/clean-and-enrich/cdc-exporter",
