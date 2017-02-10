@@ -1,0 +1,22 @@
+{
+  "name": "cargo-compose",
+  "version": "0.0.1",
+  "description": "Docker-compose file generator for simple services and control UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonas Verhoelen",
+  "license": "MIT",
+  "bin": {
+    "cargo-compose": "./index.js"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "columnify": "^1.5.4",
+    "command-exists": "^1.0.2",
+    "commander": "^2.9.0",
+    "jsonfile": "^2.4.0",
+    "yamljs": "^0.2.8"
+  }
+}

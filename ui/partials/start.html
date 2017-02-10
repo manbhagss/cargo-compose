@@ -1,0 +1,37 @@
+<div ng-controller="ServiceOverviewCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center" ng-repeat="service in services">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="font-size:22px">
+                        <a ng-if="service.url" ng-href="{{service.url}}" target="_blank">{{service.name}}</a>
+                        <span ng-if="!service.url">{{service.name}}</span>
+                        <small style="margin-left: 10px">({{service.health}})</small>
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group btn-group-lg" role="group" aria-label="">
+                            <button type="button" class="btn btn-default" ng-click="build(service)">Build</button>
+                            <button type="button" class="btn btn-default" ng-click="dockerize(service)">Dockerize</button>
+                            <button type="button" class="btn btn-primary" ng-click="refresh(service)">Refresh</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="font-size:22px">
+                        Composition
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group btn-group-lg" role="group" aria-label="">
+                            <button type="button" class="btn btn-danger" ng-click="killAll()">Kill</button>
+                            <button type="button" class="btn btn-info" ng-click="init()">Init</button>
+                            <button type="button" class="btn btn-primary" ng-click="rebuildAndInit()">Rebuild & Init</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

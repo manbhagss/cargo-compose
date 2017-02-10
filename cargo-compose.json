@@ -1,0 +1,28 @@
+{
+    "serverPort": 6789,
+    "services": {
+        "cdc-exporter": {
+            "location": "/Users/jonas/Documents/codecentric/metro/clean-and-enrich/cdc-exporter",
+            "type": "springboot",
+            "port": "8080",
+            "env": {
+                "JAVA_XMX_MB": "256",
+                "IS_COMPOSE": "true"
+            }
+        },
+        "cdc-import-file": {
+            "location": "/Users/jonas/Documents/codecentric/metro/clean-and-enrich/cdc-import-file",
+            "type": "springboot",
+            "port": "8081",
+            "env": {
+                "JAVA_XMX_MB": "256",
+                "IS_COMPOSE": "true"
+            }
+        }
+    },
+    "database": "cassandra",
+    "network": {
+        "type": "bridge",
+        "name": "app_net"
+    }
+}
