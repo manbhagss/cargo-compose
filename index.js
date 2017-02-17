@@ -8,7 +8,7 @@ let ConfigService = require('./lib/configService'),
 	PreRequisites = require('./lib/pre-requisites'),
 	Composer = require('./lib/composer'),
 	DockerService = require('./lib/dockerService'),
-	ServiceManager = require('./lib/ServiceManager'),
+	ServiceManager = require('./lib/serviceManager'),
 	server = require('./ui/server'),
 
 	packageConfig = ConfigService.getPackageConfig(),
@@ -24,6 +24,11 @@ program
 	.command('generate')
 	.description('Generates the Docker-compose.yml out of the current directories\' "cargo-compose.json" file and prints it to stdout')
 	.action(() => console.log(Composer.toDockerCompose(config)))
+
+program
+	.command('init')
+	.description('Initializes a cargo-compose project in the current directory')
+	.action(() => console.log(ConfigService.createNewProject(process.cwd())))
 
 program
 	.command('build [serviceName]')
